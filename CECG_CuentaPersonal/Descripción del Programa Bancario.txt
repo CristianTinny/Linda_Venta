@@ -1,9 +1,0 @@
-Mi programa es una aplicación en C# que simula un sistema bancario básico. Cuenta con un inicio de sesión donde el usuario ingresa su número de cuenta y contraseña, además de un límite de intentos para mayor seguridad.
-
-Una vez que el usuario accede correctamente, puede consultar su información, como el saldo y los movimientos realizados. También permite realizar operaciones como depósitos y retiros, validando que las cantidades sean correctas y que haya fondos suficientes.
-
-Cada movimiento que se realiza se guarda en un historial y además se registra en un archivo de texto, lo que permite llevar un control de todas las transacciones. En general, el programa busca administrar cuentas bancarias de forma sencilla y organizada.
-
-
-Número de cuenta:0000.
-Clave:@dmin.
