@@ -1,0 +1,11 @@
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\bin\Debug\WindowsFormsApplication4.exe.config
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\bin\Debug\WindowsFormsApplication4.exe
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\bin\Debug\WindowsFormsApplication4.pdb
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\CECG_CuentaPersonal.csproj.AssemblyReference.cache
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\WindowsFormsApplication4.FormCuentas.resources
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\WindowsFormsApplication4.FormInicioSesion.resources
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\WindowsFormsApplication4.Properties.Resources.resources
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\CECG_CuentaPersonal.csproj.GenerateResource.cache
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\CECG_CuentaPersonal.csproj.CoreCompileInputs.cache
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\WindowsFormsApplication4.exe
+C:\Users\cabre\Downloads\CECG_CuentaPersonal\CECG_CuentaPersonal\obj\Debug\WindowsFormsApplication4.pdb
