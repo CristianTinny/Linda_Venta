@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<input type="email" id="correo" placeholder="Correo"><br><br>
+<input type="password" id="password" placeholder="Contraseña"><br><br>
+
+<button onclick="login()">Ingresar</button>
+
+<p id="respuesta"></p>
+
+<script>
+
+function login() {
+
+    const correo = document.getElementById('correo').value;
+    const password = document.getElementById('password').value;
+
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ correo, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.mensaje === 'Login correcto') {
+
+            // 🔥 Guardar usuario (opcional)
+            localStorage.setItem("usuario", JSON.stringify(data.usuario));
+
+            // 🚀 REDIRECCIÓN
+            window.location.href = "productos.html";
+
+        } else {
+            document.getElementById('respuesta').innerText = data.mensaje;
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Productos</title>
+</head>
+<body>
+
+<h2>Agregar Producto</h2>
+
+<input type="text" id="nombre" placeholder="Nombre"><br><br>
+<input type="number" id="precio" placeholder="Precio"><br><br>
+<input type="number" id="stock" placeholder="Stock"><br><br>
+
+<button onclick="agregar()">Agregar</button>
+
+<p id="respuesta"></p>
+
+<hr>
+
+<h2>Lista de Productos</h2>
+<ul id="lista"></ul>
+
+<hr>
+
+<h2>🛒 Carrito</h2>
+<ul id="listaCarrito"></ul>
+<h3>Total: $<span id="total">0</span></h3>
+
+<button onclick="verCarrito()">Ver carrito</button>
+<button onclick="comprar()">Comprar</button>
+
+<script>
+
+let carrito = [];
+
+// ================= AGREGAR =================
+function agregar() {
+
+    const nombre = document.getElementById('nombre').value;
+    const precio = document.getElementById('precio').value;
+    const stock = document.getElementById('stock').value;
+
+    fetch('http://localhost:3000/productos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, precio, stock })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById('respuesta').innerText = data.mensaje;
+        cargarProductos();
+    });
+}
+
+// ================= MOSTRAR =================
+function cargarProductos() {
+
+    fetch('http://localhost:3000/productos')
+    .then(res => res.json())
+    .then(data => {
+
+        const lista = document.getElementById('lista');
+        lista.innerHTML = '';
+
+        data.forEach(p => {
+            lista.innerHTML += `
+                <li>
+                    ${p.nombre} - $${p.precio} - Stock: ${p.stock}
+
+                    <button onclick="agregarCarrito(${p.id}, '${p.nombre}', ${p.precio})">🛒</button>
+                    <button onclick="editar(${p.id})">Editar</button>
+                    <button onclick="eliminar(${p.id})">Eliminar</button>
+                </li>
+            `;
+        });
+
+    });
+}
+
+// ================= CARRITO =================
+function agregarCarrito(id, nombre, precio) {
+    carrito.push({ id, nombre, precio });
+    alert("Agregado al carrito 🛒");
+}
+
+function verCarrito() {
+
+    const lista = document.getElementById('listaCarrito');
+    const totalSpan = document.getElementById('total');
+
+    lista.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach(p => {
+        lista.innerHTML += `<li>${p.nombre} - $${p.precio}</li>`;
+        total += parseFloat(p.precio);
+    });
+
+    totalSpan.innerText = total;
+}
+
+// ================= COMPRA =================
+function comprar() {
+
+    fetch('http://localhost:3000/comprar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ carrito })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mensaje);
+        carrito = [];
+        verCarrito();
+    });
+
+}
+
+// ================= ELIMINAR =================
+function eliminar(id) {
+    fetch(`http://localhost:3000/productos/${id}`, { method: 'DELETE' })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mensaje);
+        cargarProductos();
+    });
+}
+
+// ================= EDITAR =================
+function editar(id) {
+
+    const nombre = prompt("Nuevo nombre:");
+    const precio = prompt("Nuevo precio:");
+    const stock = prompt("Nuevo stock:");
+
+    fetch(`http://localhost:3000/productos/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre, precio, stock })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.mensaje);
+        cargarProductos();
+    });
+}
+
+// ================= INICIO =================
+cargarProductos();
+
+</script>
+
+</body>
+</html>
